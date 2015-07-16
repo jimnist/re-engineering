@@ -21,15 +21,6 @@ solving problems of scale that didn't exist
 this is not my first kitty cat rodeo
 
 
-- what is couchsurfing?
-  - oh, it's like Airbnb!?
-  - airbnb == real estate
-  - couchsurfing == people
-  -
-- really cool office
-
-swing
-
 dev stack
 API
 
