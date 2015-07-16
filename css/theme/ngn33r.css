@@ -269,6 +269,13 @@ body {
   border: none;
   box-shadow: none; }
 
+.reveal blockquote {
+  background-color: #fdf6e3; }
+
+.reveal table td.number {
+  text-align: right;
+  font-weight: bold; }
+
 .brown-couch {
   width: 333px; }
 

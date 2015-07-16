@@ -50,6 +50,17 @@ section.has-dark-background {
   box-shadow: none;
 }
 
+.reveal blockquote {
+  background-color: #fdf6e3;
+}
+
+.reveal table td.number  {
+  text-align: right;
+  font-weight: bold;
+}
+
+// otherrides -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
 .brown-couch {
   width: 333px;
 }
@@ -61,5 +72,4 @@ section.has-dark-background {
   height: 144px;
   // margin-top: -30px;
 }
-
 
