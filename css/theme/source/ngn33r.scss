@@ -44,11 +44,22 @@ section.has-dark-background {
 @import "../template/theme";
 // ---------------------------------------------
 
-
+// overrides -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 .reveal section img {
-  // margin: 15px 0px;
-  // background: rgba(255,255,255,0.12);
   border: none;
   box-shadow: none;
 }
+
+.brown-couch {
+  width: 333px;
+}
+
+.brown-couch.small {
+  width: 222px;
+}
+.title-logo {
+  height: 144px;
+  // margin-top: -30px;
+}
+
 
