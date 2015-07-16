@@ -1,0 +1,12 @@
+## TODO
+- [ ] buy clicker?
+- [ ] rename repo
+- [ ] publish on github
+- [ ]
+- [ ] stats from charlies
+- [ ] embarassed to show my mom
+- [ ] not embarassed
+- [ ]
+- [ ]
+- [ ]
+- [ ] links page

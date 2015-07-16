@@ -1,0 +1,54 @@
+/**
+ * Custom theme for reveal.js. Based on the 'white' theme.
+ */
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:200,400,700,400italic,700italic);
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #444;
+$headingColor: #333;
+
+$mainFont: 'Lato', sans-serif;
+$headingFont: 'Lato', sans-serif;
+$headingTextShadow: none;
+// $headingLetterSpacing: normal;
+$headingTextTransform: none;
+
+$headingFontWeight: 700;
+$linkColor: #2a76dd;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+  }
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+
+.reveal section img {
+  // margin: 15px 0px;
+  // background: rgba(255,255,255,0.12);
+  border: none;
+  box-shadow: none;
+}
+
