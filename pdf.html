@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>re-engineering Couchsurfing</title>
+
+    <meta name="description" content="A talk about re-engineering at Couchsurfing">
+    <meta name="author" content="Jim Nist">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ngn33r.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <!-- title slide -->
+        <section data-transition="none">
+          <h2>re-engineering</h2>
+          <img class="brown-couch" src="img/brown_couch.png"><br/>
+          <div class="title-logo"><img src="img/couchsurfing.png"></div>
+        </section>
+
+        <!-- <section data-transition="none-in slide-out"> -->
+          <section>
+            <img src="img/signs.png">
+            <h2>what is Couchsurfing?</h2>
+            <blockquote class="fragment">it's like <strong>airbnb</strong>!?!</blockquote>
+            <p class="fragment">kind of. but not really.</p>
+            <aside class="notes">
+              airbnb is more about a place to stay
+            </aside>
+          </section>
+
+          <section>
+            <img src="img/soylent.png">
+            <h2>it's people.</h2>
+          </section>
+
+          <section>
+            <img src="img/one-world.png">
+            <h4>it's a booking system that connects<br/>travelers and hosts.</h4><br/>
+            <h4 class="fragment">it's a travel oriented social network.</h4><br/>
+            <h4 class="fragment">it facilitates offline connections<br/>between people all over the world.</h4>
+
+            <aside class="notes">
+              Booking.com + Meetup.com + Forums
+            </aside>
+          </section>
+        <!-- </section> -->
+
+        <section>
+          <img src="img/loop.png">
+          <table>
+            <tr><td>founded</td><td class="number">2004</td></tr>
+            <tr><td>members</td><td class="number">11,368,956</td></tr>
+            <tr><td>unique actives since relaunch</td><td class="number">3,333,481</td></tr>
+            <tr><td>members named "Bosco"</td><td class="number">76</td></tr>
+            <tr><td>events created since relaunch</td><td class="number">97,988</td></tr>
+            <tr><td>event attendees since relaunch</td><td class="number">274,139</td></tr>
+            <tr><td>SQL queries per second</td><td class="number">5745</td></tr>
+          </table>
+        </section>
+
+        <!-- <section> -->
+          <section>
+            <h1>was</h1>
+            <img src="img/now.png">
+            <h4 class="fragment">didn't want to show the site to my mom</h4>
+          </section>
+
+          <section data-background="#d4490b">
+            <ul>
+              <li>PHP site running on leased hardware in Atlanta</li>
+              <li class="fragment">rails site running at AWS in Virginia</li>
+              <li class="fragment">over 1000 tables, spread across 46 MySQL databases on 25 different MySQL masters</li>
+              <li class="fragment">user data synchronized between two sites</li>
+              <li class="fragment">rails read and writes on PHP site databases</li>
+              <li class="fragment">small features took 2 weeks to implement</li>
+              <li class="fragment">new features usually broke something else</li>
+              <li class="fragment">server velocity held up mobile development</li>
+              <!-- 152555 kohana -->
+              <!-- 558485 rails_site-->
+              <!-- 1072244 csbox-->
+              <!-- hammertime 117606 -->
+              <li class="fragment">1,783,284 lines of legacy code</li>
+              <li class="fragment">search was 5 hours behind updates</li>
+              <li class="fragment">down for 2 hours every other day</li>
+              <li class="fragment">site was slow</li>
+
+            </ul>
+          </section>
+
+          <section>
+            <h3>how did it get that way?</h3>
+          </section>
+
+          <section data-background="#d4490b">
+            <ul>
+              <li>2004 is a long time ago</li>
+              <li class="fragment">built by volunteers initially through collectives</li>
+              <li class="fragment">difficult transition from not-for-profit</li>
+              <li class="fragment">democratic feature strategy</li>
+              <li class="fragment">lurching between fixing basics and radical overhauls</li>
+              <!-- <li class="fragment">over-engineering</li> -->
+            </ul>
+          </section>
+
+          <section>
+            <h3>that's kind of depressing.</h3>
+          </section>
+
+          <section data-background="#000000" data-transition="none">
+            <h3>core idea == awesome<br/></h3>
+            <img src="img/pluto.gif">
+            <h4 class="fragment">
+              with dedicated users all over the globe,<br/>
+              our challenge is to do the idea justice.
+            </h4>
+          </section>
+
+          <section>
+            <h3>taking the plunge</h3>
+          </section>
+        <!-- </section> -->
+
+        <!-- meat goes here -->
+        <section>
+          <h1>strategy</h1>
+        </section>
+
+        <section>
+          <h2>Agile Manifesto</h2>
+          <ul>
+            <li>Individuals and interactions over processes and tools</li>
+            <li>Working software over comprehensive documentation</li>
+            <li>Customer collaboration over contract negotiation</li>
+            <li>Responding to change over following a plan</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Simplify</h2>
+          <ul>
+            <li class="fragment">be brutal about MVP</li>
+            <li class="fragment">AWS</li>
+            <li class="fragment">staffing</li>
+            <li class="fragment">leverage open source</li>
+          </ul>
+        </section>
+
+        <section data-background="#000000">
+          <img src="img/kiss.jpg">
+        </section>
+
+        <section>
+          <h2>Analytics from the beginning</h2>
+          <ul>
+            <li class="fragment">logstash</li>
+            <li class="fragment">kibana</li>
+            <li class="fragment">redshift via attunity</li>
+            <li class="fragment">looker</li>
+            <li class="fragment">amplitude</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>our stack</h2>
+          <ul>
+            <li class="fragment">Rails</li>
+            <li class="fragment">simple html based views with jquery</li>
+            <li class="fragment">(massive) MySQL on RDS</li>
+            <li class="fragment">SOLR</li>
+            <li class="fragment">google for geo</li>
+            <li class="fragment">Mandrill for email</li>
+            <li class="fragment">Stripe and Paypal</li>
+            <li class="fragment">neo4j (oops)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>cool names</h2>
+          <ul>
+            <li class="fragment">potatoe</li>
+            <li class="fragment">hammertime</li>
+            <li class="fragment">hammerpants</li>
+          </ul>
+        </section>
+
+        <section>
+          <img src="img/hammerpants.jpg">
+        </section>
+
+        <section>
+          <h2>things we could have done better</h2>
+          <ul>
+            <li class="fragment">more resource on the product side</li>
+            <li class="fragment">hired a little better</li>
+            <li class="fragment">not made any mistakes</li>
+            <li class="fragment">not ignored SEO</li>
+            <li class="fragment">been nicer to each other</li>
+          </ul>
+        </section>
+
+        <!-- <section> -->
+          <section>
+            <h1>is</h1>
+            <img src="img/proud.png" width="500px">
+            <h4 class="fragment">not totally embarrassing</h4>
+          </section>
+
+          <section data-background="#d4490b">
+            <ul>
+              <li>basics features in place</li>
+              <li class="fragment">analytics drive decisions</li>
+              <li class="fragment">better search</li>
+              <li class="fragment">performance</li>
+              <li class="fragment">bigger product improvements</li>
+              <li class="fragment">focus on mobile</li>
+              <li class="fragment">more focus on mobile</li>
+            </ul>
+          </section>
+        <!-- </section> -->
+
+        <!-- <section> -->
+          <section>
+            <h1>will be</h1>
+            <img src="img/golden.png" width="700px">
+            <h3 class="fragment">look mom, this is AWESOME!</h3>
+            <p class="fragment">. . and our test coverage is 100% for things that matter</p>
+
+          </section>
+        <!-- </section> -->
+<!--
+        <section data-transition="none">
+          <h2>thank you!</h2>
+          <img class="brown-couch" src="img/brown_couch.png"><br/>
+          <div class="title-logo">i like questions.</div>
+        </section>
+ -->
+        <!-- the end -->
+        <section>
+          <img class="small brown-couch" src="img/brown_couch.png">
+
+          <table class="the-end" width="33%">
+            <tr>
+              <td>slides:</td>
+              <td><a href="http://ngn33r.github.io/re-engineering">ngn33r.github.io/re-engineering</a></td>
+            </tr>
+            <tr>
+              <td>couchsurfing:</td>
+              <td><a href="https://www.couchsurfing.com/people/jim.nist">couchsurfing.com/people/jim.nist</a></td>
+            </tr>
+            <tr>
+              <td>email:</td>
+              <td><a href="mailto:jim@couchsurfing.com">jim@couchsurfing.com</a></td>
+            </tr>
+            <tr>
+              <td>twitter:</td>
+              <td><a href="http://twitter.com/ngn33r">@ngn33r</a></td>
+            </tr>
+          </table>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
